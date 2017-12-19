@@ -120,7 +120,7 @@ def update_file(input_file_name, output_file_name):
 
 # A couple of test files
 update_file("html/table.html", "html/table_updated.html")
-# update_file("html/docs.html", "html/docs_updated.html")
+update_file("html/docs.html", "html/docs_updated.html")
 
 # Import some code to check whether the computed files are correct
 import file_diff
