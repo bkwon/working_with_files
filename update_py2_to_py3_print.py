@@ -126,7 +126,7 @@ update_file("html/docs.html", "html/docs_updated.html")
 import file_diff
 
 file_diff.compare_files("html/table_updated.html", "html/table_updated_solution.html")
-# file_diff.compare_files("html/docs_updated.html", "html/docs_updated_solution.html")
+file_diff.compare_files("html/docs_updated.html", "html/docs_updated_solution.html")
 
 # Expected output
 ##table_updated.html and table_updated_solution.html are the same
