@@ -1,3 +1,5 @@
+import file_diff
+
 """
 Week 4 practice project template for Python Data Representation
 Update syntax for print in CodeSkulptor Docs
@@ -120,13 +122,13 @@ def update_file(input_file_name, output_file_name):
 
 # A couple of test files
 update_file("html/table.html", "html/table_updated.html")
-update_file("html/docs.html", "html/docs_updated.html")
+# update_file("html/docs.html", "html/docs_updated.html")
 
 # Import some code to check whether the computed files are correct
-import file_diff
+
 
 file_diff.compare_files("html/table_updated.html", "html/table_updated_solution.html")
-file_diff.compare_files("html/docs_updated.html", "html/docs_updated_solution.html")
+# file_diff.compare_files("html/docs_updated.html", "html/docs_updated_solution.html")
 
 # Expected output
 ##table_updated.html and table_updated_solution.html are the same
