@@ -107,8 +107,8 @@ def file_diff_format(filename1, filename2):
     return ""
 
 
-# singleline_diff("abcd", "abcd")
-# singleline_diff("abdc", "abcd")
-singleline_diff("abcdef", "abcdefg")
-# singleline_diff("abc", "abbc")
+singleline_diff("abcd", "abcd")
+singleline_diff("abdc", "abcd")
+singleline_diff("abcd", "abc")
+singleline_diff("abc", "abbc")
 
