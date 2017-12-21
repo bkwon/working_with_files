@@ -20,31 +20,25 @@ def singleline_diff(line1, line2):
       Returns IDENTICAL if the two lines are the same.
     """
 
-    shortlength = 0
-    if (len(line1)) != (len(line2)):
-        if len(line1) < len(line2):
-            shortlength = len(line1)
-            print("Short length is line 1: " + str(len(line1)))
-        else:
-            shortlength = len(line2)
-            print("Short length is line 2: " + str(len(line2)))
-        # return shortlength
-    #     print("These are not the same.\nFirst length is: "+ str(line1_length) + "\nSecond length is: " + str(line2_length))
+    if len(line2) > len(line1):
+        print("Line 1 is shorter and this is the length: " + str(len(line1)))
+        line1, line2 = line2, line1
 
-    #
-    # print(range(len(line1)))
-    # print(range(len(line2)))
+    for letter in range(len(line1)):
+        try:
+            print("Iteration: " + str(letter))
+            if line1[letter] != line2[letter]:
+                print("Lines differ at position {}".format(letter))
+                # print(i, line1[i], line2[i])
+                # print("1st diff is at index = " + str([i]))
+                return [letter]
 
-    for i in range(0, shortlength):
-    # for i in range(len(line1)):
-        print("Iteration: " + str(i))
-        if line1[i] != line2[i]:
-            # print(i, line1[i], line2[i])
-            print("1st diff is at index = " + str([i]))
-            return [i]
-            # break
-
-    return IDENTICAL
+        except IndexError:
+            print("Lines differ at catch position {}".format(letter))
+            return [letter]
+    else:
+        print("The lines are identical")
+        return IDENTICAL
 
 
 def singleline_diff_format(line1, line2, idx):
@@ -113,4 +107,8 @@ def file_diff_format(filename1, filename2):
     return ""
 
 
-singleline_diff("Helloo", "Hello")
+# singleline_diff("abcd", "abcd")
+# singleline_diff("abdc", "abcd")
+singleline_diff("abcdef", "abcdefg")
+# singleline_diff("abc", "abbc")
+
