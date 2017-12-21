@@ -51,25 +51,26 @@ def singleline_diff_format(line1, line2, idx):
       If idx is not a valid index, then returns an empty string.
     """
 
+    try:
+        if idx != -1:
+            index = len(idx) + 1
+            seplen = len(line1)
+            sep = ('=' * seplen)
+            seplist = list(sep)
+            seplist[index] = '^'
+            sepfinal = "".join(seplist)
 
-    if idx != -1:
-        index = len(idx) + 1
-        seplen = len(line1)
-        sep = ('=' * seplen)
-        seplist = list(sep)
-        seplist[index] = '^'
-        sepfinal = "".join(seplist)
-
-        full_string = line1 + "\n" + sepfinal + "\n" + line2 + "\n"
-        print(full_string)
-        return full_string
-    else:
-        sep = ('=' * len(line1))
-        full_string = line1 + "\n" + sep + "\n" + line2 + "\n"
-        print(full_string)
-        return full_string
-
-    return ""
+            full_string = line1 + "\n" + sepfinal + "\n" + line2 + "\n"
+            print(full_string)
+            return full_string
+        else:
+            sep = ('=' * len(line1))
+            full_string = line1 + "\n" + sep + "\n" + line2 + "\n"
+            print(full_string)
+            return full_string
+    except IndexError:
+        print("Got an index error here!")
+        return ""
 
 
 def multiline_diff(lines1, lines2):
@@ -129,3 +130,5 @@ singleline_diff_format("abcd", "abcd", idx01)
 singleline_diff_format("abdc", "abcd", idx02)
 singleline_diff_format("abcd", "abc", idx03)
 singleline_diff_format("abc", "abbc", idx04)
+
+# singleline_diff_format("abcd", "abcd", [50])
