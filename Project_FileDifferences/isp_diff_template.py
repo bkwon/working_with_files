@@ -56,6 +56,12 @@ def singleline_diff_format(line1, line2, idx):
 
       If idx is not a valid index, then returns an empty string.
     """
+
+    print()
+    print(line1)
+    sep = ('=' * len(line1))
+    print(sep)
+    print(line2 + "\n")
     return ""
 
 
@@ -107,8 +113,15 @@ def file_diff_format(filename1, filename2):
     return ""
 
 
-singleline_diff("abcd", "abcd")
-singleline_diff("abdc", "abcd")
-singleline_diff("abcd", "abc")
-singleline_diff("abc", "abbc")
+# def main():
+# singleline_diff("abcd", "abcd")
+print("HERE")
+idx02 = singleline_diff("abdc", "abcd")
+print(idx02)
+# singleline_diff("abcd", "abc")
+# singleline_diff("abc", "abbc")
 
+# singleline_diff_format("abcd", "abcd", singleline_diff("abcd", "abcd"))
+singleline_diff_format("abdc", "abcd", idx02)
+# singleline_diff_format("abcd", "abc", None)
+# singleline_diff_format("abc", "abbc", None)
