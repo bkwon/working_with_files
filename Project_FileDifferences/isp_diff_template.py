@@ -21,14 +21,14 @@ def singleline_diff(line1, line2):
     """
 
     if len(line2) > len(line1):
-        print("Line 1 is shorter and this is the length: " + str(len(line1)))
+        # print("Line 1 is shorter and this is the length: " + str(len(line1)))
         line1, line2 = line2, line1
 
     for letter in range(len(line1)):
         try:
-            print("Iteration: " + str(letter))
+            # print("Iteration: " + str(letter))
             if line1[letter] != line2[letter]:
-                print("Lines differ at position {}".format(letter))
+                # print("Lines differ at position {}".format(letter))
                 # print(i, line1[i], line2[i])
                 # print("1st diff is at index = " + str([i]))
                 return [letter]
@@ -37,7 +37,7 @@ def singleline_diff(line1, line2):
             print("Lines differ at catch position {}".format(letter))
             return [letter]
     else:
-        print("The lines are identical")
+        # print("The lines are identical")
         return IDENTICAL
 
 
@@ -59,9 +59,19 @@ def singleline_diff_format(line1, line2, idx):
 
     print()
     print(line1)
-    sep = ('=' * len(line1))
-    print(sep)
-    print(line2 + "\n")
+    if idx != -1:
+        index = len(idx) + 1
+        seplen = len(line1)
+        sep = ('=' * seplen)
+        seplist = list(sep)
+        seplist[index] = '^'
+        sepfinal = "".join(seplist)
+        print(sepfinal)
+        print(line2 + "\n")
+    else:
+        sep = ('=' * len(line1))
+        print(sep)
+        print(line2 + "\n")
     return ""
 
 
@@ -114,14 +124,14 @@ def file_diff_format(filename1, filename2):
 
 
 # def main():
-# singleline_diff("abcd", "abcd")
-print("HERE")
+idx01 = singleline_diff("abcd", "abcd")
+# print("HERE")
 idx02 = singleline_diff("abdc", "abcd")
-print(idx02)
+# print(idx02)
 # singleline_diff("abcd", "abc")
 # singleline_diff("abc", "abbc")
 
-# singleline_diff_format("abcd", "abcd", singleline_diff("abcd", "abcd"))
+singleline_diff_format("abcd", "abcd", idx01)
 singleline_diff_format("abdc", "abcd", idx02)
 # singleline_diff_format("abcd", "abc", None)
 # singleline_diff_format("abc", "abbc", None)
