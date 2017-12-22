@@ -31,7 +31,9 @@ def singleline_diff(line1, line2):
         except IndexError:
             # print("Lines differ at catch position {}".format(letter))
             return letter
+
     else:
+        # print("Identical here")
         return IDENTICAL
 
 
@@ -50,31 +52,43 @@ def singleline_diff_format(line1, line2, idx):
 
       If idx is not a valid index, then returns an empty string.
     """
+    special_chars_check = ["\n", "\r"]
 
-    specialCharsCheck = ["\n", "\r"]
+    print(len(line1))
+    if len(line2) < len(line1):
+        shortline = len(line2)
+    elif len(line1) < len(line2):
+        shortline = len(line1)
+    else:
+        shortline = len(line1)
+    print(range(shortline))
 
-    for c in specialCharsCheck:
+    for specval in special_chars_check:
         try:
             # if c in line1 or c in line2:
-            if any(c in line1 or c in line2 for c in specialCharsCheck):
+            if any(specval in line1 or specval in line2 for specval in special_chars_check):
                 print("Detected special chars!")
                 return ""
-            elif idx != -1:
-                index = idx
-                seplen = len(line1)
-                sep = ('=' * seplen)
+            elif (idx != -1) and idx <= shortline:
+                print("Index = " + str(idx) + "; Line1 len = " + str(shortline))
+                sep = ('=' * idx)
                 seplist = list(sep)
-                seplist[index] = '^'
+                seplist.append('^')
                 sepfinal = "".join(seplist)
 
                 full_string = line1 + "\n" + sepfinal + "\n" + line2 + "\n"
                 print(full_string)
                 return full_string
-            else:
-                sep = ('=' * len(line1))
-                full_string = line1 + "\n" + sep + "\n" + line2 + "\n"
+            elif (idx == 0) and idx == shortline:
+                sep = []
+                sep.append('^')
+                sepfinal = "".join(sep)
+                full_string = line1 + "\n" + sepfinal + "\n" + line2 + "\n"
                 print(full_string)
                 return full_string
+            print("Let's return empty string here.")
+            return ""
+
         except IndexError:
             print("Got an index error here!")
             return ""
@@ -129,25 +143,32 @@ def file_diff_format(filename1, filename2):
 
 
 """
+Owltest Code
+"""
+# idx00 = singleline_diff('a', 'b')
+#
+singleline_diff_format("abc", "abc", -1)
+singleline_diff_format("abc", "abd", 2)
+singleline_diff_format("bc", "abc", 0)
+singleline_diff_format('abcdefg', 'abc', 5)
+singleline_diff_format('Python is fast!!!', 'Python is fun!!!', 11)
+singleline_diff_format('abc', 'abd', 2)
+singleline_diff_format('', 'a', 0)
+
+"""
 Bryant's Tests
 """
 
-idx01 = singleline_diff("abcd", "abcd")
-idx02 = singleline_diff("abdc", "abcd")
-idx03 = singleline_diff("abcd", "abc")
-idx04 = singleline_diff("abc", "abbc")
-
-singleline_diff_format("abcd", "abcd", idx01)
-singleline_diff_format("abdc", "abcd", idx02)
-singleline_diff_format("abcd", "abc", idx03)
-singleline_diff_format("abc", "abbc", idx04)
+# idx01 = singleline_diff("abcd", "abcd")
+# idx02 = singleline_diff("abdc", "abcd")
+# idx03 = singleline_diff("abcd", "abc")
+# idx04 = singleline_diff("abc", "abbc")
+#
+# # singleline_diff_format("abcd", "abcd", idx01)
+# singleline_diff_format("abdc", "abcd", idx02)
+# singleline_diff_format("abcd", "abc", idx03)
+# singleline_diff_format("abc", "abbc", idx04)
 
 # singleline_diff_format("abcd", "abcd", [50])
 
-"""
-Owltest Code
-"""
-singleline_diff_format("abc", "abd", 2)
 
-idx00 = singleline_diff('a', 'b')
-print(idx00)
