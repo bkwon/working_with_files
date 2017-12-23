@@ -107,29 +107,15 @@ def multiline_diff(lines1, lines2):
 
       Returns (IDENTICAL, IDENTICAL) if the two lists are the same.
     """
-    # list1 = list(enumerate(lines1))  # using enumerate to add enumeration for each element of list
-    # list2 = list(enumerate(lines2))
-
-    # for lineidx, line1 in enumerate(lines1):
     for lineidx, line1 in enumerate(itertools.zip_longest(lines1, lines2)):
-        # print("{}:{}".format(lineidx, line1))
-        # line1 = lines1[lineidx]
-        # line2 = lines2[lineidx]
-        # print(line1)
-        # print(line2)
         try:
-            # if lines1[lineidx] != lines2[lineidx]:
             line1 = lines1[lineidx]
             line2 = lines2[lineidx]
             index = singleline_diff(line1, line2)
-            if index != -1:  # need an if identical but not done with list logic here
-                # for index in range(len(lines1)):
+            if index != -1:
                 print("Got here!")
                 print(lineidx, index)
                 return (lineidx, index)
-
-            # print("Lines are identical!")
-            # return (IDENTICAL, IDENTICAL)
 
         except IndexError:
             print("Got index error!! --> (" + str(lineidx) + ", 0)")
@@ -137,17 +123,6 @@ def multiline_diff(lines1, lines2):
 
     print("Lines are identical.....")
     return (IDENTICAL, IDENTICAL)
-
-
-    # print("List1 at index0 = " + str(list1[0]))
-    # print("Length of List 1 is: " + str(len(lines1)))
-    # if list1 != list2:
-    #     print("Lists are different!")
-    #
-    # print(list1 + list2)
-    # print(list1[0])
-    # print("Returning (IDENTICAL, IDENTICAL)")
-    # return (IDENTICAL, IDENTICAL)
 
 
 def get_file_lines(filename):
