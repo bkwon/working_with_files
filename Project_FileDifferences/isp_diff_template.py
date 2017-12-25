@@ -65,7 +65,7 @@ def singleline_diff_format(line1, line2, idx):
         shortline = len(line1)
     print(range(shortline))
 
-    for specval in special_chars_check:
+    for _ in special_chars_check:
         try:
             # if c in line1 or c in line2:
             if any(specval in line1 or specval in line2 for specval in special_chars_check):
