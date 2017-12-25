@@ -6,6 +6,7 @@ Be sure to read the project description page for further information
 about the expected behavior of the program.
 """
 import itertools
+import os.path
 
 IDENTICAL = -1
 
@@ -137,7 +138,19 @@ def get_file_lines(filename):
       If the file does not exist or is not readable, then the
       behavior of this function is undefined.
     """
-    return []
+    fname = os.path.isfile(filename)
+
+    try:
+        if fname == True:
+            # print("Filename Exists: " + str(fname))
+            # with open(filename, 'r') as doc_file:   # with/as auto cleans up an object at end of block (open/close files)
+            #     doc_text = doc_file.read()
+            my_list = open(filename, 'r').read().splitlines()
+            print(my_list)
+            return my_list
+    except FileNotFoundError:
+        print("File does not exist!")
+        # return []
 
 
 def file_diff_format(filename1, filename2):
@@ -175,9 +188,13 @@ Owltest Code
 # lines2 = ["one", "four", "three"]
 # multiline_diff(lines1, lines2)
 # multiline_diff(['a'], ['b'])
-multiline_diff(['line1', 'line2'], ['line1', 'lne2'])
-multiline_diff(['line1', 'line2'], ['line1', 'line2', 'line3'])
-multiline_diff(['line1', 'line2'], ['line1', 'line2'])
+# multiline_diff(['line1', 'line2'], ['line1', 'lne2'])
+# multiline_diff(['line1', 'line2'], ['line1', 'line2', 'line3'])
+# multiline_diff(['line1', 'line2'], ['line1', 'line2'])
+
+
+get_file_lines('file1.txt',)
+
 
 """
 Bryant's Tests
