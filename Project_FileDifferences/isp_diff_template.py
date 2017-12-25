@@ -7,6 +7,7 @@ about the expected behavior of the program.
 """
 import itertools
 import os.path
+# import filecmp
 
 IDENTICAL = -1
 
@@ -34,9 +35,7 @@ def singleline_diff(line1, line2):
             # print("Lines differ at catch position {}".format(letter))
             return letter
 
-    else:
-        # print("Identical here")
-        return IDENTICAL
+    return IDENTICAL
 
 
 def singleline_diff_format(line1, line2, idx):
@@ -142,15 +141,11 @@ def get_file_lines(filename):
 
     try:
         if fname == True:
-            # print("Filename Exists: " + str(fname))
-            # with open(filename, 'r') as doc_file:   # with/as auto cleans up an object at end of block (open/close files)
-            #     doc_text = doc_file.read()
             my_list = open(filename, 'r').read().splitlines()
             print(my_list)
             return my_list
     except FileNotFoundError:
         print("File does not exist!")
-        # return []
 
 
 def file_diff_format(filename1, filename2):
@@ -168,12 +163,29 @@ def file_diff_format(filename1, filename2):
       If either file does not exist or is not readable, then the
       behavior of this function is undefined.
     """
-    return ""
+    NODIFF = "No differences\n"
+
+    my_list1 = get_file_lines(filename1)
+    my_list2 = get_file_lines(filename2)
+
+    line_num, index = multiline_diff(my_list1, my_list2)
+    if line_num == -1:
+        print("No Differences\n")
+        return NODIFF
+    print("Diff detected!\n Line#: " + str(line_num) + "\n Index: " + str(index))
+    line1 = my_list1[line_num]
+    line2 = my_list2[line_num]
+    semifinal_answer = singleline_diff_format(line1, line2, index)
+    final_answer = "Line " + str(line_num) + ":\n" + str(semifinal_answer)
+    # final_answer = semifinal_answer.insert(0, line_num)
+
+    print(final_answer)
+    return final_answer
 
 
-"""
-Owltest Code
-"""
+
+# Owltest Code
+
 # idx00 = singleline_diff('a', 'b')
 #
 # singleline_diff_format("abc", "abc", -1)
@@ -193,12 +205,17 @@ Owltest Code
 # multiline_diff(['line1', 'line2'], ['line1', 'line2'])
 
 
-get_file_lines('file1.txt',)
+# get_file_lines('file1.txt',)
+#
+# file_diff_format('file1.txt', 'file2.txt')
+# file_diff_format('file1.txt', 'file1.txt')
+# file_diff_format('file9.txt', 'file9.txt')
 
 
-"""
-Bryant's Tests
-"""
+
+
+# Bryant's Tests
+
 
 # idx01 = singleline_diff("abcd", "abcd")
 # idx02 = singleline_diff("abdc", "abcd")
