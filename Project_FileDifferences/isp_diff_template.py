@@ -10,6 +10,7 @@ import os.path
 # import filecmp
 
 IDENTICAL = -1
+NODIFF = "No differences\n"
 
 def singleline_diff(line1, line2):
     """
@@ -140,7 +141,7 @@ def get_file_lines(filename):
     fname = os.path.isfile(filename)
 
     try:
-        if fname == True:
+        if fname:
             my_list = open(filename, 'r').read().splitlines()
             print(my_list)
             return my_list
@@ -163,7 +164,7 @@ def file_diff_format(filename1, filename2):
       If either file does not exist or is not readable, then the
       behavior of this function is undefined.
     """
-    NODIFF = "No differences\n"
+
 
     my_list1 = get_file_lines(filename1)
     my_list2 = get_file_lines(filename2)
@@ -222,7 +223,7 @@ def file_diff_format(filename1, filename2):
 # file_diff_format('file1.txt', 'file2.txt')
 # file_diff_format('file1.txt', 'file1.txt')
 # file_diff_format('file9.txt', 'file9.txt')
-file_diff_format('file8.txt', 'file9.txt')
+# file_diff_format('file8.txt', 'file9.txt')
 
 # Bryant's Tests
 
