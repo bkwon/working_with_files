@@ -92,7 +92,7 @@ def update_file(input_file_name, output_file_name):
     # print(openfile)
     # data = openfile.read()
     # print(data)
-    with open(input_file_name) as doc_file:
+    with open(input_file_name) as doc_file:   # with/as auto cleans up an object at end of block (open/close files)
         doc_text = doc_file.read()
 
     # split text in <pre> blocks and update using update_pre_block()
