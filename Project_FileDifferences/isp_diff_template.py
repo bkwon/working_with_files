@@ -172,12 +172,24 @@ def file_diff_format(filename1, filename2):
     if line_num == -1:
         print("No Differences\n")
         return NODIFF
+    if line_num == 0 and index == 0:
+        if my_list1 == []:
+            line1 = ""
+            line2 = my_list2[line_num]
+            semifinal_answer = singleline_diff_format(line1, line2, index)
+            final_answer = "Line " + str(line_num) + ":\n" + str(semifinal_answer)
+            return final_answer
+        elif my_list2 == []:
+            line2 = ""
+            line1 = my_list1[line_num]
+            semifinal_answer = singleline_diff_format(line1, line2, index)
+            final_answer = "Line " + str(line_num) + ":\n" + str(semifinal_answer)
+            return final_answer
     print("Diff detected!\n Line#: " + str(line_num) + "\n Index: " + str(index))
     line1 = my_list1[line_num]
     line2 = my_list2[line_num]
     semifinal_answer = singleline_diff_format(line1, line2, index)
     final_answer = "Line " + str(line_num) + ":\n" + str(semifinal_answer)
-    # final_answer = semifinal_answer.insert(0, line_num)
 
     print(final_answer)
     return final_answer
@@ -210,9 +222,7 @@ def file_diff_format(filename1, filename2):
 # file_diff_format('file1.txt', 'file2.txt')
 # file_diff_format('file1.txt', 'file1.txt')
 # file_diff_format('file9.txt', 'file9.txt')
-
-
-
+file_diff_format('file8.txt', 'file9.txt')
 
 # Bryant's Tests
 
