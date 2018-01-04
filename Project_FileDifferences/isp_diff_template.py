@@ -220,10 +220,10 @@ def file_diff_format(filename1, filename2):
 
 # get_file_lines('file1.txt',)
 #
-# file_diff_format('file1.txt', 'file2.txt')
-# file_diff_format('file1.txt', 'file1.txt')
-# file_diff_format('file9.txt', 'file9.txt')
-# file_diff_format('file8.txt', 'file9.txt')
+file_diff_format('file1.txt', 'file2.txt')
+file_diff_format('file1.txt', 'file1.txt')
+file_diff_format('file9.txt', 'file9.txt')
+file_diff_format('file8.txt', 'file9.txt')
 
 # Bryant's Tests
 
